@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="husc.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet" />
+  <title>Giảng Viên - Hệ thống quản lý yêu cầu phúc khảo</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #f5f7fa;
+    }
+
+    .container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 260px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 0;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        
+    }
+
+    .sidebar-title {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .sidebar-title::before {
+        content: "🎓";
+        margin-right: 10px;
+        font-size: 20px;
+    }
+
+    .sidebar-subtitle {
+      padding-top: 10px;
+        font-size: 16px;
+        opacity: 0.8;
+        font-weight: bold;
+        
+    }
+
+    .sidebar-menu {
+        list-style: none;
+        padding: 20px 0;
+    }
+
+    .sidebar-menu li {
+        margin-bottom: 2px;
+    }
+
+    .sidebar-menu a {
+          display: block;
+            padding: 15px 22px;
+            text-decoration: none;
+            color: #e7e9eb;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 600;
+    }
+
+    .sidebar-menu a:hover,
+    .sidebar-menu a.active {
+        background: rgba(255,255,255,0.1);
+        color: white;
+        padding-left: 24px;
+    }
+
+    .sidebar-menu a::before {
+        margin-right: 12px;
+        font-size: 16px;
+        width: 20px;
+    }
+
+    .menu-dashboard::before { content: "📊"; }
+    .menu-list::before { content: "📋"; }
+    .menu-search::before { content: "🔍"; }
+    .menu-score::before { content: "✏️"; }
+    .menu-transfer::before { content: "📤"; }
+    .menu-logout::before { content: "🚪"; }
+
+    /*Nội dung chính*/
+    .main-content {
+        flex: 1;
+        padding: 0;
+    }
+
+    .main-header {
+        background: white;
+        padding: 20px 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .page-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        padding: 8px;
+        font-size: 18px;
+        color: black;
+        font-weight: bold;
+        background-color: #babcbf48;
+
+    }
+
+    .user-name {
+        font-weight: bold;
+        color: #2d3748;
+    }
+
+    /* Trang */
+    .page {
+        padding: 30px;
+        display: none;
+    }
+
+    .page.active {
+        display: block;
+    }
+
+    /* Dashboard */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .stat-info h3 {
+        font-size: 14px;
+        color: #718096;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .stat-number {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .stat-change {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .stat-change.increase {
+        color: #38a169;
+    }
+
+    .stat-change.decrease {
+        color: #e53e3e;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    .stat-card:nth-child(1) .stat-number { color: #667eea; }
+    .stat-card:nth-child(1) .stat-icon { background: rgba(102, 126, 234, 0.1); }
+
+    .stat-card:nth-child(2) .stat-number { color: #38a169; }
+    .stat-card:nth-child(2) .stat-icon { background: rgba(56, 161, 105, 0.1); }
+
+    .stat-card:nth-child(3) .stat-number { color: #ed8936; }
+    .stat-card:nth-child(3) .stat-icon { background: rgba(237, 137, 54, 0.1); }
+
+    .stat-card:nth-child(4) .stat-number { color: #e53e3e; }
+    .stat-card:nth-child(4) .stat-icon { background: rgba(229, 62, 62, 0.1); }
+
+    /* Biểu đồ */
+    .charts-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .chart-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .chart-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+    .chart-filter {
+        padding: 8px 16px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        background: white;
+        font-size: 14px;
+    }
+
+    .chart-container {
+        height: 200px;
+        background: #f7fafc;
+        border-radius: 8px;
+        display: flex;
+        align-items: end;
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .chart-bar {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 4px 4px 0 0;
+        min-height: 20px;
+        flex: 1;
+    }
+
+    .chart-bar:nth-child(1) { height: 80%; }
+    .chart-bar:nth-child(2) { height: 60%; }
+    .chart-bar:nth-child(3) { height: 90%; }
+    .chart-bar:nth-child(4) { height: 45%; }
+    .chart-bar:nth-child(5) { height: 70%; }
+    .chart-bar:nth-child(6) { height: 85%; }
+
+    /* BẢng */
+    .data-table {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        margin-top: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+        background: #f7fafc;
+        font-weight: 600;
+        color: #4a5568;
+        font-size: 14px;
+    }
+
+    td {
+        font-size: 14px;
+        color: #2d3748;
+    }
+
+    .status {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .status.pending {
+        background: #fef5e7;
+        color: #d69e2e;
+    }
+
+    .status.processing {
+        background: #e6fffa;
+        color: #319795;
+    }
+
+    .status.completed {
+        background: #f0fff4;
+        color: #38a169;
+    }
+
+    /* Các nút */
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .action-btn {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .btn-view {
+        background: #bee3f8;
+        color: #2b6cb0;
+    }
+
+    .btn-process {
+        background: #c6f6d5;
+        color: #25855a;
+    }
+
+    .btn-process:hover {
+        background: #9ae6b4;
+    }
+
+    /* Tìm kiếm */
+    .search-container {
+        margin-bottom: 20px;
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 400px;
+        padding: 12px 16px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        background: white;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    /* Biểu mẫu */
+    .form-container {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        max-width: 600px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #4a5568;
+        font-size: 14px;
+    }
+
+    .form-input, .form-textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-input:disabled {
+        background: #f7fafc;
+        color: #a0aec0;
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    /* Các tiêu đề */
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+    /* Chuyển kq */
+    .transfer-container {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        text-align: center;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .transfer-container p {
+        font-size: 16px;
+        color: #4a5568;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .transfer-btn {
+        background: linear-gradient(135deg, #38a169 0%, #25855a 100%);
+        color: white;
+        padding: 15px 30px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .transfer-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(56, 161, 105, 0.3);
+    }
+        /* Form chấm điểm chi tiết */
+    .detail-container{background:white;padding:20px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.05);}
+    .detail-section{margin-bottom:20px;}
+    .detail-title{font-weight:600;color:#2d3748;margin-bottom:10px;}
+    .detail-box{border:1px solid #e2e8f0;border-radius:8px;padding:15px;background:#f9fafb;}
+    .file-boxes{display:flex;gap:20px;margin-top:10px;}
+    .file-box{flex:1;border:1px dashed #cbd5e0;border-radius:8px;padding:30px;text-align:center;color:#718096;background:#edf2f7;}
+    .file-box i{font-size:40px;color:red;margin-bottom:10px;}
+    .form-group{margin-bottom:15px;}
+    .form-label{display:block;margin-bottom:6px;font-weight:600;color:#4a5568;font-size:14px;}
+    .form-input,.form-textarea{width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:6px;font-size:14px;}
+    .btn-primary{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:10px 20px;border:none;border-radius:6px;font-weight:600;cursor:pointer;}
+    /* Phản hồi */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 60px;
+        }
+
+        .sidebar-title,
+        .sidebar-subtitle {
+            display: none;
+        }
+
+        .sidebar-menu a {
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .sidebar-menu a span {
+            display: none;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .charts-section {
+            grid-template-columns: 1fr;
+        }
+
+        .main-header {
+            padding: 15px 20px;
+        }
+
+        .page {
+            padding: 20px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Giảng Viên</div>
+        <div class="sidebar-subtitle">Hệ thống quản lý phúc khảo</div>
+      </div>
+      <nav>
+        <ul class="sidebar-menu">
+          <li><a href="#" class="nav-link active" data-page="dashboard"><span>🏠 Trang chủ</span></a></li>
+          <li><a href="#" class="nav-link" data-page="list"><span>📋 Danh sách</span></a></li>
+          <li><a href="#" class="nav-link" data-page="search"><span>🔍 Tìm kiếm</span></a></li>
+          <li><a href="#" class="nav-link" data-page="score"><span>✏️ Chấm điểm</span></a></li>
+          <li><a href="#" class="nav-link" data-page="transfer"><span>📤 Chuyển kết quả</span></a></li>
+          <li><a href="#" class="nav-link" data-page="logout"><span>🚪 Đăng xuất</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="main-header">
+        <h1 class="page-title">🎓 Trang chủ</h1>
+        <div class="user-info">
+          <span class="user-name">
+            <i class="fas fa-user-circle text-black text-xl"></i> GV. Nguyễn Văn A</span>
+        </div>
+      </header>
+
+      <!-- Dashboard Page -->
+      <div id="dashboard" class="page active">
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Tổng yêu cầu</h3>
+              <div class="stat-number">45</div>
+              <div class="stat-change increase">↗ 12% so với tháng trước</div>
+            </div>
+            <div class="stat-icon">📋</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Đã xử lý</h3>
+              <div class="stat-number">35</div>
+              <div class="stat-change increase">↗ 8% so với tháng trước</div>
+            </div>
+            <div class="stat-icon">✅</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Đang xử lý</h3>
+              <div class="stat-number">8</div>
+              <div class="stat-change decrease">↘ 3% so với tháng trước</div>
+            </div>
+            <div class="stat-icon">⏳</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Chờ xử lý</h3>
+              <div class="stat-number">2</div>
+              <div class="stat-change increase">↗ 12% so với tháng trước</div>
+            </div>
+            <div class="stat-icon">⏰</div>
+          </div>
+        </div>
+
+        <!-- Biểu đồ -->
+        <div class="charts-section">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">📊 Biểu đồ yêu cầu theo tháng</h3>
+              <select class="chart-filter">
+                <option>Năm 2025</option>
+                <option>Năm 2024</option>
+              </select>
+            </div>
+            <div class="chart-container">
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">📈 Biểu đồ yêu cầu theo môn học</h3>
+              <select class="chart-filter">
+                <option>Môn học</option>
+                <option>Toán học</option>
+                <option>Vật lý</option>
+              </select>
+            </div>
+            <div class="chart-container">
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yêu cầu gần đây -->
+        <div class="section-header">
+          <h3 class="section-title">Yêu cầu phúc khảo gần đây</h3>
+          <button class="btn btn-primary" onclick="navigateToPage('list')">Xem tất cả</button>
+        </div>
+        <div class="data-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã</th>
+                <th>Sinh viên</th>
+                <th>Môn</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PK001</td>
+                <td>Nguyễn Văn A</td>
+                <td>Giải tích</td>
+                <td><span class="status pending">Chờ xử lý</span></td>
+                <td>
+                  <button class="action-btn btn-process" onclick="openDetail('PK001')">Chấm điểm</button>
+                </td>
+              </tr>
+              <tr>
+                <td>PK002</td>
+                <td>Trần Thị B</td>
+                <td>Lập trình</td>
+                <td><span class="status pending">Chờ xử lý</span></td>
+                <td>
+                  <button class="action-btn btn-process" onclick="openDetail('PK002')">Chấm điểm</button>
+                </td>
+              </tr>
+              <tr>
+                <td>PK003</td>
+                <td>Nguyễn Đức B</td>
+                <td>OOP</td>
+                <td><span class="status completed">Đã xử lý</span></td>
+                <td>
+                  <button class="action-btn btn-view">Xem</button>
+                </td>
+              </tr>
+               <tr>
+                <td>PK004</td>
+                <td>Phan Đình P</td>
+                <td>Triết học Mác - Lênin</td>
+                <td><span class="status completed">Đã xử lý</span></td>
+                <td>
+                  <button class="action-btn btn-view">Xem</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Danh sách -->
+      <div id="list" class="page">
+        <h2>📋 Danh sách yêu cầu</h2>
+        <div class="data-table">
+          <table id="requestTable">
+            <thead>
+              <tr>
+                <th>Mã</th>
+                <th>Sinh viên</th>
+                <th>Môn</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tìm kiếm -->
+      <div id="search" class="page">
+        <h2>🔍 Tìm kiếm</h2>
+        <div class="search-container">
+          <input type="text" id="searchInput" class="search-input" placeholder="Nhập tên sinh viên hoặc môn học...">
+        </div>
+        <div class="data-table">
+          <table id="searchResult">
+            <thead>
+              <tr>
+                <th>Mã</th>
+                <th>Sinh viên</th>
+                <th>Môn</th>
+                <th>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Chấm Điểm -->
+        <div id="score" class="page">
+          <h2>✏️ Chấm điểm</h2>
+          <div class="detail-container" id="scoreDetail">
+            <!-- Nội dung chi tiết sẽ render bằng JS -->
+          </div>
+        </div>
+
+      <!-- Chuyển kết quả -->
+      <div id="transfer" class="page">
+          <h2>📤 Chuyển kết quả</h2>
+          <div class="data-table">
+            <table id="transferTable">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Mã</th>
+                  <th>Sinh viên</th>
+                  <th>Môn</th>
+                  <th>Điểm mới</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <button class="btn-primary" onclick="transferResults()">Chuyển kết quả</button>
+</div>
+
+  <script>
+     const data = [
+          { id:'PK001', name:'Nguyễn Văn A', subject:'Giải tích', status:'Chờ xử lý', oldScore:5.0, reason:'Muốn xem lại bài', semester:'2/2025', submit:'14/03/2025'},
+          { id:'PK002', name:'Trần Thị B', subject:'Lập trình nâng cao', status:'Chờ xử lý', oldScore:7.0, reason:'Sai sót khi chấm', semester:'2/2025', submit:'13/03/2025'},
+          { id: 'PK003', name: 'Nguyễn Đức B', subject: 'OOP', status: 'Đã xử lý', oldScore:4.0, reason:'Điểm thấp', semester:'2/2025', submit:'15/03/2025'},
+          { id: 'PK004', name: 'Phan Đình P', subject: 'Triết học Mác - Lênin', status: 'Đã xử lý', oldScore:3.0, reason:'Điểm thấp', semester:'2/2025', submit:'17/03/2025'}
+        ];
+      function renderTable(){
+        const tbody=document.querySelector('#requestTable tbody');
+        tbody.innerHTML='';
+        data.forEach(row=>{
+          tbody.innerHTML+=`
+            <tr>
+              <td>${row.id}</td><td>${row.name}</td><td>${row.subject}</td><td>${row.status}</td>
+              <td>
+                <button class="action-btn btn-process" onclick="openDetail('${row.id}')">Chi tiết</button>
+              </td>
+            </tr>`;
+        });
+      }
+    function openDetail(id){
+      const req=data.find(d=>d.id===id);
+      if(!req)return;
+      const container=document.getElementById('scoreDetail');
+      container.innerHTML=`
+        <div class="detail-section">
+          <div class="detail-title">Thông tin yêu cầu</div>
+          <div class="detail-box">
+            <p><b>Mã yêu cầu:</b> ${req.id} | <b>Học kỳ:</b> ${req.semester}</p>
+            <p><b>Họ tên:</b> ${req.name} | <b>Môn:</b> ${req.subject}</p>
+            <p><b>Điểm hiện tại:</b> ${req.oldScore} | <b>Thời điểm nộp:</b> ${req.submit}</p>
+          </div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-title">Lý do phúc khảo</div>
+          <div class="detail-box">${req.reason}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-title">Bài làm</div>
+          <div class="file-boxes">
+            <div class="file-box"><i class="fas fa-file-pdf"></i><br>File bài làm đã chấm</div>
+            <div class="file-box"><i class="fas fa-file-pdf"></i><br>File bài làm phúc khảo</div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-title">Chấm điểm</div>
+          <form onsubmit="submitScore(event)">
+            <div class="form-group">
+              <label class="form-label">Điểm ban đầu:</label>
+              <input type="text" class="form-input" value="${req.oldScore}" disabled>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Điểm điều chỉnh:</label>
+              <input type="number" id="newScore" class="form-input" min="0" max="10" step="0.1" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nhận xét:</label>
+              <textarea id="comment" class="form-textarea" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Gửi kết quả chấm</button>
+          </form>
+        </div>
+      `;
+      navigateToPage('score');
+    }
+    function renderSearchResults(keyword){
+      const tbody=document.querySelector('#searchResult tbody');
+      tbody.innerHTML='';
+      data.filter(d=>d.id.includes(keyword)||d.name.includes(keyword)||d.subject.includes(keyword))
+        .forEach(row=>{
+          tbody.innerHTML+=`<tr><td>${row.id}</td><td>${row.name}</td><td>${row.subject}</td><td>${row.status}</td></tr>`;
+        });
+      if(tbody.innerHTML===''){tbody.innerHTML=`<tr><td colspan="4" style="text-align:center;color:gray;">Không có kết quả</td></tr>`;}
+    }
+
+    function navigateToPage(pageId) {
+          document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+          document.getElementById(pageId).classList.add('active');
+          document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+          document.querySelector(`.nav-link[data-page="${pageId}"]`).classList.add('active');
+          
+          // Update page title
+          const titles = {
+              'dashboard': '🏠 Trang chủ',
+              'list': '📋 Danh sách yêu cầu',
+              'search': '🔍 Tìm kiếm',
+              'score': '✏️ Chấm điểm',
+              'transfer': '📤 Chuyển kết quả'
+          };
+          document.querySelector('.page-title').textContent = titles[pageId] || '🏠 Trang chủ';
+          if(pageId === 'score' && document.getElementById('scoreDetail').innerHTML.trim()===""){
+                alert("Bạn chưa chọn đơn phúc khảo nào. Hãy chọn từ Danh sách.");
+                navigateToPage('list');
+                return;
+          }
+           if (pageId === 'transfer') {
+            renderTransferTable();
+           }
+    }
+    function renderTransferTable(){
+        const tbody=document.querySelector('#transferTable tbody');
+        tbody.innerHTML='';
+        data.filter(d=>d.status==='Đã xử lý').forEach(row=>{
+          tbody.innerHTML+=`
+            <tr>
+              <td><input type="checkbox" class="transfer-check" value="${row.id}"></td>
+              <td>${row.id}</td>
+              <td>${row.name}</td>
+              <td>${row.subject}</td>
+              <td>${row.newScore || '-'}</td>
+            </tr>`;
+        });
+    }
+
+    function transferResults(){
+      const selected=[...document.querySelectorAll('.transfer-check:checked')].map(cb=>cb.value);
+      if(selected.length===0){alert("Vui lòng chọn ít nhất một đơn để chuyển!");return;}
+      alert("Đã chuyển kết quả cho các đơn: "+selected.join(", "));
+    }
+    
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const page = link.getAttribute('data-page');
+            if (page === 'logout') {
+                if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                    alert('Đã đăng xuất!');
+                    window.location="DangNhap.html";
+                }
+            } else {
+                navigateToPage(page);
+            }
+        });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', e => {
+        renderSearchResults(e.target.value.trim());
+    });
+
+
+
+    // Hover animation
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    renderTable();
+  </script>
+</body>
+</html>
