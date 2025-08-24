@@ -34,17 +34,14 @@
         }
         .header h1 {
             padding-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 22px;
             color:black
-            
         }
 
         .user-info {
             padding: 8px;
-            font-size: 18px;
+            font-size: 15px;
             color: black;
-            font-weight: bold;
             background-color: #babcbf48;
 
         }
@@ -111,7 +108,7 @@
 
         .breadcrumb {
             color: #6c757d;
-            font-size: 14px;
+            font-size: 15px;
             margin-bottom: 20px;
         }
 
@@ -444,7 +441,7 @@
             <!-- TRANG CHỦ -->
               <div class="header">
                 <div class="breadcrumb">
-                    <h1 id="pageTitle">🏠 Trang chủ - Hệ Thống Phúc Khảo</h1>
+                    <h1 id="pageTitle">🏠 Trang chủ - Hệ thống quản lý phúc khảo</h1>
                 </div>
                 <div class="user-info">
                     <i class="fas fa-user-circle text-black text-xl"></i> SV: Nguyễn Văn A
@@ -527,11 +524,11 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label>👤 Chọn mẫu học:</label>
+                                <label>👤 Chọn học kỳ:</label>
                                 <input type="text" value="Học kỳ I - 2025" readonly>
                             </div>
                             <div class="form-group">
-                                <label>📅 Nhập thông tin:</label>
+                                <label>📅 Nhập ngày:</label>
                                 <input type="date" id="ngayNop" value="2025-08-05">
                             </div>
                             <div class="form-group">
@@ -795,11 +792,11 @@
 
             // Update page title
             const titles = {
-                'home': '🏠 Trang Chủ - Hệ thống Phúc khảo',
-                'new-request': '📝 Nộp Đơn Mới - Hệ thống Phúc Khảo',
-                'history': '📋 Lịch Sử - Hệ Thống Phúc Khảo',
-                'stats': '📊 Thống kê - Hệ thống Phúc Khảo',
-                'help': '💬 Trợ Giúp - Hệ Thống Phúc Khảo'
+                'home': '🏠 Trang Chủ - Hệ thống quản lý phúc khảo',
+                'new-request': '📝 Nộp Đơn Mới - Hệ thống quản lý phúc khảo',
+                'history': '📋 Lịch Sử - Hệ thống quản lý phúc khảo',
+                'stats': '📊 Thống kê - Hệ thống quản lý phúc Khảo',
+                'help': '💬 Trợ Giúp - Hệ thống quản lý phúc khảo'
             };
             
             document.getElementById('pageTitle').textContent = titles[pageId] || titles['home'];
