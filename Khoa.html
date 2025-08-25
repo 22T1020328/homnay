@@ -1,0 +1,537 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>
+        Dashboard
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            font-family: 'Quicksand', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F8FAFF] min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-56 flex flex-col bg-gradient-to-b from-[#667eea] to-[#764ba2]    text-white">
+        <div class="px-5 py-6 flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-graduation-cap text-white text-xl">
+                </i>
+                <h1 class="font-semibold text-lg">
+                    Khoa CNTT
+                </h1>
+            </div>
+            <p class="text-xs font-normal opacity-70">
+                Hệ thống quản lý phúc khảo
+            </p>
+        </div>
+        <nav class="flex flex-col gap-1 px-3">
+            <a class="flex items-center gap-3 px-4 py-2 rounded-md bg-[#4B54D2] text-white text-sm font-medium"
+                href="#">
+                <i class="fas fa-chart-bar text-gray-200"></i>
+                Trang chủ
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-md text-white text-sm font-medium opacity-80 hover:opacity-100 transition"
+                href="SendTeacher.html">
+                <i class="fas fa-clipboard text-gray-200"></i>
+                Chuyển cho GV
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-md text-white text-sm font-medium opacity-80 hover:opacity-100 transition"
+                href="SummaryResult.html">
+                <i class="fas fa-tasks text-gray-200"></i>
+                Tổng hợp kết quả
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-md text-white text-sm font-medium opacity-80 hover:opacity-100 transition"
+                href="sendPKT.html">
+                <i class="fas fa-users text-gray-200"></i>
+                Gửi PKT
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-md text-white text-sm font-medium opacity-80 hover:opacity-100 transition"
+                href="DangNhap.html">
+                <i class="fas fa-sign-out-alt text-gray-200"></i>
+                Đăng xuất
+            </a>
+        </nav>
+    </aside>
+    <!-- Main content -->
+    <main class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header class="flex justify-between items-center px-6 py-4 bg-white border-b border-gray-200">
+            <h2 class="text-black-100 font-Quicksand font-bold text-3xl">
+                Trang chủ
+            </h2>
+            <div
+                class="flex items-center gap-2 bg-[#F3F4F6] rounded-md px-3 py-1 text-xs font-medium text-gray-700 select-none">
+                <i class="fas fa-user-circle text-black text-xl"></i>
+                GV. Nguyễn Văn A
+            </div>
+        </header>
+        <!-- Nội dung trang chủ -->
+        <section class="p-6 space-y-6 overflow-auto">
+            <div class="bg-white rounded-lg shadow-sm">
+                <!-- Header -->
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex ">
+                        <h3 class="text-lg font-medium text-gray-900">Danh sách yêu cầu phúc khảo từ PKT</h3>
+                        <div class="flex min-w-[300px] justify-end ml-auto">
+                            <div class="relative mr-2">
+                                <i
+                                    class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input id="searchInput" type="text" placeholder="Tìm kiếm yêu cầu..."
+                                    class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm font-normal text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <button id="btnFilter"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-2">
+                            <i class="fas fa-filter"></i>
+                            Lọc
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 py-2 px-2">
+                    <div class="flex-1 min-w-[160px] max-w-xs bg-blue-50 rounded-xl p-4 shadow-sm">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-xs font-medium text-blue-600">
+                                Tổng yêu cầu
+                            </p>
+                            <i class="fas fa-list text-blue-600"></i>
+                        </div>
+                        <p class="text-2xl font-semibold text-blue-600 leading-8">
+                            45
+                        </p>
+
+                    </div>
+                    <div class="flex-1 min-w-[160px] max-w-xs bg-yellow-50 rounded-xl p-4 shadow-sm">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-xs font-medium text-yellow-600">
+                                Chờ xử lí
+                            </p>
+                            <i class="fas fa-spinner text-yellow-500"></i>
+                        </div>
+                        <p class="text-2xl font-semibold text-yellow-600 leading-8">
+                            35
+                        </p>
+
+                    </div>
+                    <div class="flex-1 min-w-[160px] max-w-xs bg-green-50 rounded-xl p-4 shadow-sm">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-xs font-medium text-green-600">
+                                Đã chuyển GV
+                            </p>
+                            <i class="fas fa-check-circle text-green-600"></i>
+                        </div>
+                        <p class="text-2xl font-semibold text-green-600 leading-8">
+                            8
+                        </p>
+
+                    </div>
+                    <div class="flex-1 min-w-[160px] max-w-xs bg-red-50 rounded-xl p-4 shadow-sm">
+                        <div class="flex justify-between items-center mb-2">
+                            <p class="text-xs font-medium text-red-600">
+                                Hoàn thành
+                            </p>
+                            <i class="fas fa-check-circle text-red-600"></i>
+                        </div>
+                        <p class="text-2xl font-semibold text-red-600 leading-8">
+                            2
+                        </p>
+
+                    </div>
+                </div>
+                  <!-- Table -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">STT</th>
+                                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Mã học
+                                                phần</th>
+                                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Tên học
+                                                phần</th>
+                                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Nhóm</th>
+                                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Phòng thi
+                                            </th>
+                                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Số túi
+                                            </th>
+                                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Số phách
+                                            </th>
+                                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-500">Điểm thi
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">MAHP001</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">Giải tích</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">101</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">Tin-101</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">3.0</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">MAHP001</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">Giải tích</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">101</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">Tin-101</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                            <td class="px-4 py-3 text-sm text-gray-900">3.0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </section>
+   
+            <!-- Tab Content: Chuyển cho GV -->
+            <div id="content-chuyen-gv" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Chuyển YCPK cho Giảng viên</h3>
+                    </div>
+                    
+                    <div class="p-6">
+                        <!-- Form chuyển GV -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Chọn Giảng viên</label>
+                                    <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                                        <option>TS. Trần Văn B - Giảng viên bộ môn</option>
+                                        <option>PGS.TS. Lê Thị C - Phó trưởng bộ môn</option>
+                                        <option>ThS. Hoàng Văn D - Giảng viên</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Hạn chế phúc khảo</label>
+                                    <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Ghi chú</label>
+                                    <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500" placeholder="Ghi chú thêm..."></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-900 mb-4">YCPK được chọn</h4>
+                                <div class="space-y-2">
+                                    <div class="flex items-center space-x-2">
+                                        <input type="checkbox" class="text-blue-600">
+                                        <span class="text-sm">INT2204 - Lập trình hướng đối tượng</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <input type="checkbox" class="text-blue-600">
+                                        <span class="text-sm">INT3306 - Phát triển ứng dụng Web</span>
+                                    </div>
+                                </div>
+                                
+                                <button class="w-full mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                                    Chuyển cho Giảng viên
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Tổng hợp kết quả -->
+            <div id="content-tong-hop" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Tổng hợp kết quả phúc khảo từ Giảng viên</h3>
+                    </div>
+                    
+                    <!-- Biên bản từ GV -->
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <h4 class="text-lg font-medium text-gray-900 mb-4">Biên bản phúc khảo từ Giảng viên</h4>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full border border-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Mã HP</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Tên HP</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Nhóm</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Phòng thi</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Túi</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Số phách</th>
+                                            <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase border">Điểm ban đầu</th>
+                                            <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase border">Điểm phúc khảo</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Lý do</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Ngày giờ chấm</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase border">Thành viên chấm</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm border">INT2204</td>
+                                            <td class="px-4 py-3 text-sm border">Lập trình hướng đối tượng</td>
+                                            <td class="px-4 py-3 text-sm border">N01</td>
+                                            <td class="px-4 py-3 text-sm border">P201</td>
+                                            <td class="px-4 py-3 text-sm border">T001</td>
+                                            <td class="px-4 py-3 text-sm border">M1001</td>
+                                            <td class="px-4 py-3 text-center text-sm border">6.5</td>
+                                            <td class="px-4 py-3 text-center text-sm font-medium text-green-600 border">7.0</td>
+                                            <td class="px-4 py-3 text-sm border">Thiếu điểm câu 3</td>
+                                            <td class="px-4 py-3 text-sm border">16/03/2025 14:30</td>
+                                            <td class="px-4 py-3 text-sm border">TS. Trần Văn B, ThS. Lê Văn C</td>
+                                        </tr>
+                                        <tr class="bg-gray-50">
+                                            <td class="px-4 py-3 text-sm border">INT3306</td>
+                                            <td class="px-4 py-3 text-sm border">Phát triển ứng dụng Web</td>
+                                            <td class="px-4 py-3 text-sm border">N02</td>
+                                            <td class="px-4 py-3 text-sm border">P205</td>
+                                            <td class="px-4 py-3 text-sm border">T002</td>
+                                            <td class="px-4 py-3 text-sm border">M1002</td>
+                                            <td class="px-4 py-3 text-center text-sm border">7.5</td>
+                                            <td class="px-4 py-3 text-center text-sm font-medium text-gray-600 border">7.5</td>
+                                            <td class="px-4 py-3 text-sm border">Điểm chính xác</td>
+                                            <td class="px-4 py-3 text-sm border">16/03/2025 15:00</td>
+                                            <td class="px-4 py-3 text-sm border">PGS.TS. Lê Thị C</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end">
+                            <button class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                                Tổng hợp và chuyển sang gửi PKT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Gửi cho PKT -->
+            <div id="content-gui-pkt" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-medium text-gray-900">Danh sách kết quả phúc khảo gửi PKT</h3>
+                            <button onclick="showSendToPKTModal()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                </svg>
+                                Gửi PKT
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Danh sách gửi PKT -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                        <input type="checkbox" class="text-blue-600">
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">STT</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mã HP</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tên HP</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nhóm</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Phòng thi</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Túi</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Số phách</th>
+                                    <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Điểm ban đầu</th>
+                                    <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Điểm phúc khảo</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-4">
+                                        <input type="checkbox" class="text-blue-600">
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">1</td>
+                                    <td class="px-4 py-4 text-sm font-medium text-blue-600">INT2204</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">Lập trình hướng đối tượng</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">N01</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">P201</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">T001</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">M1001</td>
+                                    <td class="px-4 py-4 text-center text-sm text-gray-900">6.5</td>
+                                    <td class="px-4 py-4 text-center text-sm font-medium text-green-600">7.0</td>
+                                    <td class="px-4 py-4 text-sm text-gray-500">Tăng 0.5 điểm sau phúc khảo câu 3</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-4">
+                                        <input type="checkbox" class="text-blue-600">
+                                    </td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">2</td>
+                                    <td class="px-4 py-4 text-sm font-medium text-blue-600">INT3306</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">Phát triển ứng dụng Web</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">N02</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">P205</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">T002</td>
+                                    <td class="px-4 py-4 text-sm text-gray-900">M1002</td>
+                                    <td class="px-4 py-4 text-center text-sm text-gray-900">7.5</td>
+                                    <td class="px-4 py-4 text-center text-sm font-medium text-gray-600">7.5</td>
+                                    <td class="px-4 py-4 text-sm text-gray-500">Không thay đổi điểm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                        <div class="text-sm text-gray-600">
+                            Tổng cộng: <span class="font-medium">15 kết quả</span> | 
+                            Tăng điểm: <span class="font-medium text-green-600">8</span> | 
+                            Không đổi: <span class="font-medium text-gray-600">6</span> | 
+                            Giảm điểm: <span class="font-medium text-red-600">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal gửi PKT -->
+    <div id="sendToPKTModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h3 class="text-lg font-medium text-gray-900">Xác nhận gửi PKT</h3>
+            </div>
+            <div class="p-6">
+                <p class="text-sm text-gray-600 mb-4">Bạn có chắc chắn muốn gửi 15 kết quả phúc khảo cho Phòng Khảo Thí?</p>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-md p-4 mb-4">
+                    <div class="text-sm text-yellow-800">
+                        <strong>Lưu ý:</strong> Sau khi gửi sẽ không thể chỉnh sửa kết quả.
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button onclick="closeSendToPKTModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">
+                        Hủy
+                    </button>
+                    <button onclick="sendToPKT()" class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700">
+                        Xác nhận gửi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        // Modal functions
+        function showSendToPKTModal() {
+            document.getElementById('sendToPKTModal').classList.remove('hidden');
+        }
+
+        function closeSendToPKTModal() {
+            document.getElementById('sendToPKTModal').classList.add('hidden');
+        }
+
+        function sendToPKT() {
+            // Simulate sending process
+            alert('Đã gửi thành công 15 kết quả phúc khảo cho PKT!');
+            closeSendToPKTModal();
+        }
+
+        // Add CSS for tab styling
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .tab-button {
+                    color: #6b7280;
+                    border-color: transparent;
+                    transition: all 0.2s;
+                }
+                .tab-button:hover {
+                    color: #374151;
+                    border-color: #d1d5db;
+                }
+                .tab-button.active {
+                    color: #2563eb;
+                    border-color: #2563eb;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // Search functionality
+        function searchYCPK() {
+            const searchInput = document.querySelector('input[placeholder="Tìm kiếm YCPK..."]');
+            const searchTerm = searchInput.value.toLowerCase();
+            console.log('Tìm kiếm:', searchTerm);
+            // Implement search logic here
+        }
+
+        // Select all functionality for sending to PKT
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox' && e.target.closest('thead')) {
+                const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+                checkboxes.forEach(cb => cb.checked = e.target.checked);
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('sendToPKTModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSendToPKTModal();
+            }
+        });
+
+        // ESC key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSendToPKTModal();
+            }
+        });
+
+        // Sample data management
+        function assignToTeacher(id) {
+            alert(`Đã chuyển YCPK #${id} cho giảng viên thành công!`);
+        }
+
+        function viewYCPK(id) {
+            alert(`Xem chi tiết YCPK #${id}`);
+        }
+
+        function filterResults() {
+            console.log('Lọc kết quả');
+            // Implement filter logic
+        }
+
+        // Auto-refresh data every 30 seconds
+        setInterval(function() {
+            // Update statistics and data
+            console.log('Cập nhật dữ liệu tự động...');
+        }, 30000);
+    </script>
+</body>
+</html>

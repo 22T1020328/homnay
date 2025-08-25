@@ -84,7 +84,6 @@
                         class="border border-gray-300 rounded-lg text-gray-700 font-normal focus:outline-none px-4 py-2.5 focus:ring-2 focus:ring-blue-500 min-w-[150px]">
                         <option value="">Tất cả trạng thái</option>
                         <option value="Mới nhận">Mới nhận</option>
-                        <option value="Đã xử lý">Đã xử lý</option>
                         <option value="Đã gửi PDT">Đã gửi PDT</option>
                     </select>
                     <button id="btnFilter"
@@ -111,236 +110,213 @@
 
                 <div class="max-h-[600px] overflow-y-auto bg-white rounded-xl shadow-lg border border-gray-200">
                     <table id="requestTable" class="w-full">
-                        <thead class="sticky top-0 bg-gray-50 border-b border-gray-200">
+                        <thead class="bg-gray-50">
                             <tr>
-                                <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    <div class="flex items-center gap-2">
-                                        <span>Chọn</span>
-                                    </div>
+                                <th class="px-4 py-3 text-left">
+                                    <input type="checkbox"
+                                        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                 </th>
                                 <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    <div class="flex items-center gap-2">
-                                        <span>Môn học</span>
-                                        <i class="fas fa-sort text-gray-400"></i>
-                                    </div>
-                                </th>
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    STT</th>
                                 <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    <div class="flex items-center gap-2">
-                                        <span>Giảng viên</span>
-                                        <i class="fas fa-sort text-gray-400"></i>
-                                    </div>
-                                </th>
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Khoa</th>
                                 <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    <div class="flex items-center gap-2">
-                                        <span>Số sinh viên</span>
-                                        <i class="fas fa-sort text-gray-400"></i>
-                                    </div>
-                                </th>
+                                    class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Số kết quả</th>
                                 <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    <div class="flex items-center gap-2">
-                                        <span>Ngày nhận</span>
-                                        <i class="fas fa-sort text-gray-400"></i>
-                                    </div>
-                                </th>
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Thời điểm nhận</th>
                                 <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    <div class="flex items-center gap-2">
-                                        <span>Trạng thái</span>
-                                        <i class="fas fa-sort text-gray-400"></i>
-                                    </div>
-                                </th>
+                                    class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Trạng thái</th>
                                 <th
-                                    class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    <div class="flex items-center gap-2">
-                                        <span>Thao tác</span>
-                                        <i class="fas fa-sort text-gray-400"></i>
-                                    </div>
-                                </th>
+                                    class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Thao tác</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr data-status="Mới nhận">
-                                <td class="px-6 py-4 whitespace-nowrap"> <!-- ko cho phep xuong dong -->
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                            <tr data-status="Mới nhận" class="hover:bg-gray-50">
+                                <td class="px-4 py-4">
+                                    <input type="checkbox"
+                                        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-4 py-4 text-sm text-gray-900 font-medium">1</td>
+                                <td class="px-4 py-4">
                                     <div class="flex items-center">
                                         <div
-                                            class="w-10 h-10 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mr-2">
-                                            <i class="fas fa-calculator text-purple-600"></i>
+                                            class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">
+                                            CNTT
                                         </div>
                                         <div>
-                                            <div class="text-sm font-medium text-gray-900">Giải Tích</div>
-                                            <div class="text-xs  text-gray-500">Toán học cơ bản</div>
+                                            <div class="text-sm font-medium text-gray-900">Khoa Công nghệ thông tin
+                                            </div>
+                                            <div class="text-sm text-gray-500">CNTT</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="px-4 py-4 text-center">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        2 kết quả
+                                    </span>
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900">
+                                    <div>15/03/2025</div>
+                                    <div class="text-xs text-gray-500">08:30 AM</div>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        Mới nhận
+                                    </span>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <button id="addUserBtn"
+                                            class="px-4 py-2 text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md">
+                                            Tổng hợp
+                                        </button>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-status="Đã gửi PDT" class="hover:bg-gray-50">
+                                <td class="px-4 py-4">
+                                    <input type="checkbox"
+                                        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900 font-medium">2</td>
+                                <td class="px-4 py-4">
                                     <div class="flex items-center">
                                         <div
-                                            class="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mr-2">
-                                            <span class="text-white text-xs font-semibold">NV</span>
+                                            class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">
+                                            TOÁN
                                         </div>
                                         <div>
-                                            <div class="text-sm font-medium text-gray-900">GV.Nguyễn Văn A</div>
-                                            <div class="text-xs  text-gray-500">MGV:123456</div>
+                                            <div class="text-sm font-medium text-gray-900">Khoa Toán - Tin học
+                                            </div>
+                                            <div class="text-sm text-gray-500">MIM</div>
                                         </div>
                                     </div>
                                 </td>
+                                <td class="px-4 py-4 text-center">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        8 kết quả
+                                    </span>
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900">
+                                    <div>15/03/2025</div>
+                                    <div class="text-xs text-gray-500">09:15 AM</div>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                        Đã gửi PDT
+                                    </span>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <div class="flex items-center justify-center space-x-2">
 
-                                <td class="whitespace-nowrap ">
-                                    <div class="flex px-10 mb-4">
-                                        <div>
-                                            <div class=" text-sm font-medium text-gray-900">45</div>
-                                        </div>
-                                    </div>
-
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-calendar-alt text-gray-400 mr-2"></i>
-                                        <div>
-                                            <div class="text-sm text-gray-900">15/03/2025</div>
-                                            <div class="text-xs text-gray-500">09:30 AM</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="text-blue-600 font-medium mb-4">Mới nhận</div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
                                         <button
-                                            class="bg-blue-500 hover:bg-blue-600 rounded-lg text-white px-2 py-1.5 font-medium transition-colors duration-200">
+                                            class="px-3 py-2 text-xs font-medium text-white bg-yellow-500 rounded-md hover:bg-yellow-600 transition-colors">
+                                            Đã gửi PDT
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-status="Đã gửi PDT" class="hover:bg-gray-50">
+                                <td class="px-4 py-4">
+                                    <input type="checkbox"
+                                        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900 font-medium">3</td>
+                                <td class="px-4 py-4">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">
+                                            VLý
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">Khoa Vật lý</div>
+                                            <div class="text-sm text-gray-500">PHY</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        12 kết quả
+                                    </span>
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900">
+                                    <div>15/03/2025</div>
+                                    <div class="text-xs text-gray-500">10:45 AM</div>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                        Đã gửi PDT
+                                    </span>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <button
+                                            class="px-3 py-2 text-xs font-medium text-white bg-yellow-500 rounded-md hover:bg-yellow-600 transition-colors">
+                                            Đã gửi PDT
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr data-status="Mới nhận" class="hover:bg-gray-50">
+                                <td class="px-4 py-4">
+                                    <input type="checkbox"
+                                        class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900 font-medium">4</td>
+                                <td class="px-4 py-4">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">
+                                            HOÁ
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">Khoa Hóa học</div>
+                                            <div class="text-sm text-gray-500">CHE</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        6 kết quả
+                                    </span>
+                                </td>
+                                <td class="px-4 py-4 text-sm text-gray-900">
+                                    <div>16/03/2025</div>
+                                    <div class="text-xs text-gray-500">14:20 PM</div>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        Mới nhận
+                                    </span>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <button
+                                            class="px-4 py-2 text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md">
                                             Tổng hợp
                                         </button>
                                     </div>
                                 </td>
                             </tr>
-                            <tr data-status="Đã xử lý">
-                                <td class="px-6 py-4 whitespace-nowrap"> <!-- ko cho phep xuong dong -->
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-10 h-10 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mr-2">
-                                            <i class="fas fa-calculator text-purple-600"></i>
-                                        </div>
-                                        <div>
-                                            <div class="text-sm font-medium text-gray-900">Giải Tích</div>
-                                            <div class="text-xs  text-gray-500">Toán học cơ bản</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mr-2">
-                                            <span class="text-white text-xs font-semibold">NV</span>
-                                        </div>
-                                        <div>
-                                            <div class="text-sm font-medium text-gray-900">GV.Nguyễn Văn B</div>
-                                            <div class="text-xs  text-gray-500">MGV:123456</div>
-                                        </div>
-                                    </div>
-                                </td>
 
-                                <td class="whitespace-nowrap ">
-                                    <div class="flex px-10 mb-4">
-                                        <div>
-                                            <div class=" text-sm font-medium text-gray-900">45</div>
-                                        </div>
-                                    </div>
-
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-calendar-alt text-gray-400 mr-2"></i>
-                                        <div>
-                                            <div class="text-sm text-gray-900">15/03/2025</div>
-                                            <div class="text-xs text-gray-500">09:30 AM</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="text-green-600 font-medium mb-4">Đã xử lí</div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <button
-                                            class="bg-green-500 hover:bg-green-600 rounded-lg text-white px-3 py-1.5 font-medium transition-colors duration-200">
-                                            Chọn gửi
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-status="Đã gửi PDT">
-                                <td class="px-6 py-4 whitespace-nowrap"> <!-- ko cho phep xuong dong -->
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-10 h-10 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mr-2">
-                                            <i class="fas fa-calculator text-purple-600"></i>
-                                        </div>
-                                        <div>
-                                            <div class="text-sm font-medium text-gray-900">Giải Tích</div>
-                                            <div class="text-xs  text-gray-500">Toán học cơ bản</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mr-2">
-                                            <span class="text-white text-xs font-semibold">NV</span>
-                                        </div>
-                                        <div>
-                                            <div class="text-sm font-medium text-gray-900">GV.Nguyễn Văn C</div>
-                                            <div class="text-xs  text-gray-500">MGV:123456</div>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td class="whitespace-nowrap ">
-                                    <div class="flex px-10 mb-4">
-                                        <div>
-                                            <div class=" text-sm font-medium text-gray-900">45</div>
-                                        </div>
-                                    </div>
-
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-calendar-alt text-gray-400 mr-2"></i>
-                                        <div>
-                                            <div class="text-sm text-gray-900">15/03/2025</div>
-                                            <div class="text-xs text-gray-500">09:30 AM</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="text-yellow-600 font-medium mb-4">Đã gửi PDT</div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <button
-                                            class="bg-gray-500 hover:bg-gray-600 rounded-lg text-white px-5 py-1.5 font-medium transition-colors duration-200">
-                                            Đã gửi
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
 
                         </tbody>
                     </table>
@@ -352,42 +328,226 @@
                 </div>
             </section>
         </section>
+        <!--Modal gui diem-->
+        <!-- Modal Background -->
+        <div id="pointModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50">
+
+            <!-- Modal Content -->
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-6xl mx-4 max-h-[90vh] overflow-hidden">
+
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-2 bg-blue-50 rounded-lg">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-semibold text-gray-900">Chi tiết kết quả phúc khảo</h2>
+                    </div>
+                    <button id="cancelBtn" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="p-6 overflow-y-auto max-h-[600px]">
+
+                    <!-- Thông tin khoa -->
+                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <span class="text-sm text-blue-600 font-medium">Khoa:</span>
+                                <div class="text-blue-900 font-semibold">Khoa Công nghệ thông tin</div>
+                            </div>
+                            <div>
+                                <span class="text-sm text-blue-600 font-medium">Số kết quả:</span>
+                                <div class="text-blue-900 font-semibold">2</div>
+                            </div>
+                            <div>
+                                <span class="text-sm text-blue-600 font-medium">Ngày nhận:</span>
+                                <div class="text-blue-900 font-semibold">15/03/2025 09:30 AM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chi tiết kết quả phúc khảo -->
+                    <div class="bg-white border border-gray-200 rounded-lg">
+                        <div class="px-4 py-3 border-b border-gray-200 bg-gray-50">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                                    </path>
+                                </svg>
+                                <h4 class="font-medium text-gray-900">Chi tiết kết quả phúc khảo</h4>
+                            </div>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th
+                                            class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            STT</th>
+                                        <th
+                                            class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Mã học phần</th>
+                                        <th
+                                            class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Tên học phần</th>
+                                        <th
+                                            class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Nhóm</th>
+                                        <th
+                                            class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Phòng thi</th>
+                                        <th
+                                            class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Số túi</th>
+                                        <th
+                                            class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Số phách</th>
+                                        <th
+                                            class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Điểm ban đầu</th>
+                                        <th
+                                            class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Điểm phúc khảo</th>
+                                        <th
+                                            class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Ghi chú</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                        <td class="px-4 py-3 text-sm font-medium text-blue-600">INT2204</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">Giải tích</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">101</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">Tin-101</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                        <td class="px-4 py-3 text-center text-sm text-gray-900">3.0</td>
+                                        <td class="px-4 py-3 text-center text-sm font-medium text-green-600">7.0</td>
+                                        <td class="px-4 py-3 text-center">
+                                            <span
+                                                class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                Chấm nhầm
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-4 py-3 text-sm text-gray-900">2</td>
+                                        <td class="px-4 py-3 text-sm font-medium text-blue-600">INT2204</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">Lập trình hướng đối tượng</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">1</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">201</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">Tin-102</td>
+                                        <td class="px-4 py-3 text-sm text-gray-900">2</td>
+                                        <td class="px-4 py-3 text-center text-sm text-gray-900">5.0</td>
+                                        <td class="px-4 py-3 text-center text-sm font-medium text-green-600">5.0</td>
+                                        <td class="px-4 py-3 text-center">
+                                            <span
+                                                class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                Không thay đổi
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="flex items-center justify-end space-x-3 px-6 py-4 border-t border-gray-200 bg-gray-50">
+                    <button id="cancelBtn1"
+                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
+                        Đóng
+                    </button>
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                        Gửi lên Phòng Đào Tạo
+                    </button>
+                </div>
+            </div>
+            <div id="noResults" class="text-center p-12 text-gray-700" style="display: none;">
+                <i class="fas fa-search mb-2 text-2xl opacity-50"></i>
+                <p class="font-size: 1.125rem; margin-bottom: 0.5rem;">Không tìm thấy kết quả phù hợp</p>
+                <p class="font-size: 0.875rem; color: #9ca3af;">Thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm</p>
+            </div>
     </main>
     <script>
-        const searchInput = document.getElementById("searchInput");
-        const statusFilter = document.getElementById("statusFilter");
-        const filterBtn = document.getElementById("btnFilter");
-        const requestTable = document.getElementById("requestTable");
+        //Xử lí nút select
+        const statusFilter = document.getElementById('statusFilter');
         const noResults = document.getElementById("noResults");
-
+        const requestTable = document.getElementById("requestTable");
+        const searchInput = document.getElementById("searchInput");
+        const filterBtn = document.getElementById("btnFilter");
         const rows = Array.from(requestTable.querySelectorAll("tbody tr"));
 
-        function applyFilters() {
-            const searchText = searchInput.value.toLowerCase().trim();
-            const statusValue = statusFilter.value.toLowerCase().trim();
-            let visibleCount = 0;
-            rows.forEach(row => {
-                const rowText = row.innerText.toLowerCase();
-                const rowStatus = (row.getAttribute("data-status") || "").toLowerCase().trim();
+           function applyFilters() {
+        const searchText = searchInput.value.toLowerCase().trim();
+        const statusValue = statusFilter.value.toLowerCase().trim();
+        let visibleCount = 0;
 
-                const matchSearch = rowText.includes(searchText);
-                const matchStatus = !statusValue || rowStatus === statusValue;
-                if (matchSearch && matchStatus) {
-                    row.style.display = "";
-                    visibleCount++;
-                } else {
-                    row.style.display = "none";
-                }
-            });
-            if (visibleCount === 0) {
-            noResults.style.display = "block";
-        } else {
-            noResults.style.display = "none";
-            
-        }
-        }
+        rows.forEach(row => {
+            const khoaText = row.querySelector("td:nth-child(3)")?.innerText.toLowerCase() || "";
+            const rowStatus = (row.getAttribute("data-status") || "").toLowerCase().trim();
+
+            const matchSearch = khoaText.includes(searchText); // chỉ tìm theo khoa
+            const matchStatus = !statusValue || rowStatus === statusValue;
+
+            if (matchSearch && matchStatus) {
+                row.style.display = "";
+                visibleCount++;
+            } else {
+                row.style.display = "none";
+            }
+        });
+
+        // Hiện thông báo khi không có kết quả
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    // Gõ tìm kiếm thì lọc ngay
     searchInput.addEventListener("input", applyFilters);
+    // Nhấn nút Lọc thì mới lọc
     filterBtn.addEventListener("click", applyFilters);
+
+        const addUserBtn = document.getElementById('addUserBtn');
+        const pointModal = document.getElementById('pointModal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const cancelBtn1 = document.getElementById('cancelBtn1');
+
+        addUserBtn.addEventListener('click', () => {
+            pointModal.classList.remove('hidden');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            pointModal.classList.add('hidden');
+        });
+        cancelBtn1.addEventListener('click', () => {
+            pointModal.classList.add('hidden');
+        });
+
     </script>
 </body>
 
